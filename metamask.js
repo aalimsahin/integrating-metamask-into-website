@@ -1,5 +1,8 @@
+let accounts;
+
 const connectMetaMask = async () => {
-  let accounts;
+
+
   accounts = await window.ethereum
     .request({ method: "eth_requestAccounts" })
     .catch((err) => {
@@ -14,7 +17,6 @@ const connectMetaMask = async () => {
   })
   balance = parseInt(balance);
   balance = balance/Math.pow(10,18);
-  console.log(balance);
 
   let header = document.getElementById("header");
   let footer = document.getElementById("footer");
@@ -25,3 +27,8 @@ const connectMetaMask = async () => {
   footer.style.setProperty("background-color", "#D4EDDA");
   header.style.setProperty("background-color", "#D4EDDA");
 };
+
+window.ethereum.on('accountsChanged', (account) => {
+  accounts = account;
+  connectMetaMask();  
+})

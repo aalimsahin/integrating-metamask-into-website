@@ -44,11 +44,15 @@
                 </div>
                 <div class="form-group row">
                     <label for="colFormLabel" class="col-3 col-form-label btn-warning" style="border-radius: 6px">Amount: </label>
-                    <div class="col-sm-9">
-                      <input type="email" class="form-control btn-warning" id="amount" placeholder="0 ETH">
+                    <div class="col-sm-7">
+                      <input type="email" class="form-control btn-warning" id="amount" placeholder="0">
                     </div>
-                  </div>
-                <button type="button" class="btn btn-warning" onclick="sendEther()">Send</button>
+                        <select class="col-sm-2 form-control btn-warning" id="currency">
+                            <option>ETH</option>
+                            <option>RXT</option>
+                        </select>
+                </div>
+                <button type="button" class="btn btn-warning" onclick="choose()">Send</button>
               </form>
             
         </div>
@@ -62,6 +66,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="./metamask.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+        type="application/javascript"></script>
+    
 </body>
 
 </html>

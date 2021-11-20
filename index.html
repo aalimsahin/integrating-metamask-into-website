@@ -10,8 +10,9 @@
         body{
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 0.4fr);
+            grid-template-rows: repeat(3, 0.24fr);
             gap: 10px;
+            overflow: hidden;
         }
         .text-center{
             grid-column: 2/3;
@@ -31,6 +32,25 @@
             <img id="img" src="images/metamask-red.png" alt="Logo of MetaMask" width="150" height="150">
             <hr>            
             <a onclick="connectMetaMask()" href="#" class="btn btn-warning">Connect to MetaMask</a>
+        </div>
+        <div class="card-body">
+            
+            <form>
+                <div class="form-group row">
+                  <label for="colFormLabel" class="col-3 col-form-label btn-warning" style="border-radius: 6px">Address: </label>
+                  <div class="col-sm-9">
+                    <input type="email" class="form-control btn-warning" id="addressToSend" placeholder="0x000...0000">
+                  </div>
+                </div>
+                <div class="form-group row">
+                    <label for="colFormLabel" class="col-3 col-form-label btn-warning" style="border-radius: 6px">Amount: </label>
+                    <div class="col-sm-9">
+                      <input type="email" class="form-control btn-warning" id="amount" placeholder="0 ETH">
+                    </div>
+                  </div>
+                <button type="button" class="btn btn-warning" onclick="sendEther()">Send</button>
+              </form>
+            
         </div>
         <div class="card-footer text-muted" id="footer">
           No Connection

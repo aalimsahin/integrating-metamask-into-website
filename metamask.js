@@ -32,3 +32,23 @@ window.ethereum.on('accountsChanged', (account) => {
   accounts = account;
   connectMetaMask();  
 })
+
+const sendEther= async()=>{
+  let address= document.getElementById("addressToSend").value;
+  let amount= document.getElementById("amount").value;
+  let tutar= Number(amount)*1000000000000000000;
+  let params=[
+    {
+      from:accounts[0],
+      to:address,
+      gas: '0x76c0',
+      gasPrice: Number(2111800000).toString(16),
+      value:Number(tutar).toString(16)
+
+    }
+  ]
+  let result = await window.ethereum.request({ method:'eth_sendTransaction',params}).catch((err)=>{
+    console.log(err);
+  }); 
+
+}

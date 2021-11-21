@@ -1,3 +1,5 @@
+Here is a code that allows you to send your own token and ether via the UI.
+
 You can create your own ERC20 token in Remix IDE. You must change the contract address after creating it.
 This is the code:
     

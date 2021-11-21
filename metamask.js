@@ -41,8 +41,10 @@ const connectMetaMask = async () => {
   let footer = document.getElementById("footer");
   let img = document.getElementById("img");
   img.src = "images/metamask-green.png";
-  footer.innerHTML =
+  if(currency === "ETH"){
+    footer.innerHTML =
   " Active Account : "+ accounts[0].slice(0,7)+"..."+ accounts[0].slice(-6) +"<br>"+ "Balance: "+Number.parseFloat(balance).toFixed(4) + " ETH";
+  }
   footer.style.setProperty("background-color", "#D4EDDA");
   header.style.setProperty("background-color", "#D4EDDA");
   if(window.ethereum){
@@ -79,12 +81,17 @@ const transferToken= async()=>{
     .then(data => resolve(data))
     .catch(err => reject(err));
   }).then(data =>{    
-    let libCont=new ethers.Contract( tokenAddress , data , provider.getSigner() );
+    let ttokenContract=new ethers.Contract( tokenAddress , data , provider.getSigner() );
     let address= document.getElementById("addressToSend").value;
     let amount= document.getElementById("amount").value;
     let tutar=ethers.utils.parseUnits(amount,1)/(10**(1-decimals));
-    const tx=  libCont.transfer(address, tutar);
+    const tx=  ttokenContract.transfer(address, tutar);
+
+    ttokenContract.on("Transfer", () => {
+      connectMetaMask();
+    })
   });
+  
 }
 
 const choose = function(){
@@ -101,3 +108,4 @@ const checkTokenBalance= async()=>{
     tokenContract= new ethers.Contract( tokenAddress , data , provider );
   });
 }
+
